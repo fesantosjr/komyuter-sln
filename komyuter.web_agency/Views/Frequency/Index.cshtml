@@ -1,0 +1,98 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.Frequencies>
+
+@{
+    ViewBag.Title = "Frequency List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Frequency
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="Frequency/Create">Create New Frequency</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.trip_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.start_time)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.end_time)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.headway_secs)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.exact_times)
+                                            </th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.id })" title="Details">@Html.Raw(item.trip_id)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.start_time)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.end_time)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.headway_secs)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.exact_times)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Delete", new { id = item.id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

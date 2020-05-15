@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Komyuter Agency";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Quick Start
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            @*<li class="breadcrumb-item"><a href="dashboard-default.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="#">Blank</a></li>*@
+                            <li class="breadcrumb-item active" aria-current="page">Setup Instructions</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Mobile Device Registration</h5>
+                            </div>
+                            <div class="card-body">
+                                <span class="font-weight-bold">Option 1: SMS</span>
+                                <ol>
+                                    <li>Subscribers need to text INFO to 21582044 (Cross-telco: 225652044)</li>
+                                    <li>Upon Receipt of the 'Welcome Message', the subscriber needs to reply YES</li>
+                                    @*<li>After The subscriber replies (Yes), the ACCESS_TOKEN and the subscriber's mobile number will be posted to you Redirect URI</li>*@
+                                </ol>
+                                <span class="font-weight-bold">Option 2: Web Form</span>
+                                <ol>
+                                    <li>Platform redirects your subscribers to this url: <a href="#">http://developer.globelabs.com.ph/dialog/oauth/LBnrCM7RKpu4RcoLp4TRaxuGzB58C78A</a></li>
+                                    <li>The page will ask to key-in the subscriber’s mobile number and subscriber clicks the Grant button</li>
+                                    <li>The page will be redirected, and an SMS with confirmation code will be sent to the subscriber</li>
+                                    <li>The subscriber needs to key-in on the page the received confirmation code and click the button Confirm to authorize the subscriber</li>
+                                    <li>The page will then be redirected to the redirect uri of the application, and a ‘code’ parameter will be passed to it.</li>
+                                    @*<li>To get the access token, you need to do a POST request via http://developer.globelabs.com.ph/oauth/access_token with your ‘app_id’, ‘app_secret’ and ‘code’ as the parameters. The parameters ‘access_token’ and ‘subscriber_number’ will then be returned to your redirect uri as a response.</li>*@
+                                </ol>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Trip Command</h5>
+                            </div>
+                            <div class="card-body">
+                                Format: <span class="font-weight-bolder">START&lt;space&gt;&lt;ROUTE&gt;&lt;space&gt;&lt;DIRECTION&gt;&lt;space&gt;&lt;TIME&gt;</span> <span class="font-italic">send to 21582044 (for Globe) or 225652044 (for Smart, Sun).</span>
+                                <div>
+                                    Where:
+                                    <ul>
+                                        <li>&lt;ROUTE&gt; - Trip Route. Possible values are:</li>
+                                        <ul>
+                                            <li>LRT1</li>
+                                            <li>LRT2</li>
+                                            <li>MRT3</li>
+                                            <li>PNR</li>
+                                        </ul>
+                                        <li>&lt;DIRECTION&gt; - Trip direction in 2 character format. Possible values are:</li>
+                                        <ul>
+                                            <li>NB - For Northbound. Applicable for LRT1, MRT3 and PNR.</li>
+                                            <li>SB - For Southbound. Applicable for LRT1, MRT3 and PNR.</li>
+                                            <li>WB - For Westbound. Applicable for LRT2.</li>
+                                            <li>EB - For Eastbound. Applicable for LRT2.</li>
+                                        </ul>
+                                        <li>&lt;TIME&gt; - Trip scheduled time in HHmm format. Example, 1345 (for trip scheduled to depart at 1:45pm).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

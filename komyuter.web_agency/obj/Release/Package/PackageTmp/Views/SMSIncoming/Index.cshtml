@@ -1,0 +1,106 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.SMSIncoming>
+
+@{
+    ViewBag.Title = "SMS Incoming List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        SMS Incoming
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            @*<div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="SMS Incoming List/Create">Create New Agency</button>
+                            </div>*@
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.sms_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.message)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.receive_date)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.process_date)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.process_remarks)
+                                            </th>
+                                            @*<th>Delete</th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Details", new { id = item.sms_id })" title="Details">@Html.Raw(item.sms_id)</a>
+                                            </td>
+                                            <td style="white-space: nowrap; text-overflow:ellipsis; overflow: hidden; max-width:300px;">
+                                                @Html.DisplayFor(modelItem => item.message)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.receive_date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.process_date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.process_remarks)
+                                            </td>
+                                            @*<td>
+                                                <a href="@Url.Action("Delete", new { id = item.sms_id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                            </td>*@
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                    @*<tfoot>
+                                            <tr>
+                                                <th>@Html.DisplayNameFor(model => model.agency_name)</th>
+                                                <th>@Html.DisplayNameFor(model => model.agency_url)</th>
+                                                <th>@Html.DisplayNameFor(model => model.agency_timezone)</th>
+                                                <th>@Html.DisplayNameFor(model => model.agency_lang)</th>
+                                            </tr>
+                                        </tfoot>*@
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

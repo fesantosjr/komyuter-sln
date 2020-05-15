@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Bootstrap 4 Admin &amp; Dashboard Template">
+    <meta name="author" content="Bootlab">
+    <title>Cubao - Komyuter</title>
+    <link href="css/light.css" rel="stylesheet">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            opacity: 0;
+            position: fixed;
+            overflow-y: scroll;
+            width: 100%;
+        }
+
+        #over_map {
+            position: absolute;
+            top: 0px;
+            left: -2px;
+            z-index: 99;
+        }
+
+        img.imgwifi {
+            height: 10px;
+        }
+
+        #divtable {
+            overflow: auto;
+            /*height: calc(100vh - 90px);*/
+            *display: none;
+        }
+
+        span.sHolder {
+            font-weight: bold;
+        }
+    </style>
+    <script src="file:///C:/Users/kiko/source/repos/komyuter/komyuter.web_navi/Scripts/jquery-3.4.1.js"></script>
+
+    <script src="file:///C:/Users/kiko/source/repos/komyuter/komyuter.web_navi/js/komyuter.js"></script>
+    <script src="file:///C:/Users/kiko/source/repos/komyuter/komyuter.web_navi/js/settings.js"></script>
+
+    <!-- END SETTINGS top: -228px; left: -307px;  -->
+</head>
+<!-- SET YOUR THEME -->
+<!-- SET YOUR THEME -->
+
+<body class="theme-blue">
+
+    <div id="map"></div>
+    <!-- <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 14.602631, lng: 121.003325},
+            zoom: 13,
+            fullscreenControl: false,
+            streetViewControl: false,
+            mapTypeControl: false
+        });
+      }
+    </script> -->
+    <script>
+
+        // This example creates a 2-pixel-wide red polyline showing the path of
+        // the first trans-Pacific flight between Oakland, CA, and Brisbane,
+        // Australia which was made by Charles Kingsford Smith.
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 14,
+                center: { lat: 14.6194, lng: 121.051 },
+                fullscreenControl: false,
+                streetViewControl: false,
+                mapTypeControl: false
+            });
+
+            // var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+            // 	        var beachMarker = new google.maps.Marker({
+            // 	          position: {lat: 14.6194, lng: 121.051},
+            // 	          map: map,
+            // 	          icon: image
+            // 	        });
+
+            var marker0 = new google.maps.Marker({
+                position: { lat: 14.65177, lng: 121.03234 },
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10,
+                    strokeColor: '#1C60FF',
+                    strokeWeight: 8,
+                    fillColor: '#FFFFFF',
+                    fillOpacity: 1.0,
+                    labelOrigin: new google.maps.Point(8, 0)
+                },
+                draggable: false,
+                label: { text: 'North Avenue Station', fontSize: '16px', fontWeight: 'bold', color: '#1C60FF', strokeColor: '#FFFFFF' }
+                ,
+                map: map
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: 14.6194, lng: 121.051 },
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10,
+                    strokeColor: '#1C60FF',
+                    strokeWeight: 8,
+                    fillColor: '#FF0000',
+                    fillOpacity: 1.0,
+                    labelOrigin: new google.maps.Point(8, 0)
+                },
+                draggable: false,
+                label: { text: 'Cubao Station', fontSize: '16px', fontWeight: 'bold', color: '#1C60FF', strokeColor: '#FFFFFF' }
+                ,
+                map: map
+            });
+
+            var marker2 = new google.maps.Marker({
+                position: { lat: 14.60721, lng: 121.05685 },
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10,
+                    strokeColor: '#1C60FF',
+                    strokeWeight: 8,
+                    fillColor: '#FFFFFF',
+                    fillOpacity: 1.0,
+                    labelOrigin: new google.maps.Point(8, 0)
+                },
+                draggable: false,
+                label: { text: 'Santolan Station', fontSize: '16px', fontWeight: 'bold', color: '#1C60FF', strokeColor: '#FFFFFF' }
+                ,
+                map: map
+            });
+
+            var marker3 = new google.maps.Marker({
+                position: { lat: 14.5376, lng: 121.001 },
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10,
+                    strokeColor: '#1C60FF',
+                    strokeWeight: 8,
+                    fillColor: '#FFFFFF',
+                    fillOpacity: 1.0,
+                    labelOrigin: new google.maps.Point(8, 0)
+                },
+                draggable: false,
+                label: { text: 'Taft Station', fontSize: '16px', fontWeight: 'bold', color: '#1C60FF', strokeColor: '#FFFFFF' }
+                ,
+                map: map
+            });
+
+            var flightPlanCoordinates = [
+                { lat: 14.5376, lng: 121.001 },
+                { lat: 14.53885, lng: 121.0123 },
+                { lat: 14.54009, lng: 121.01659 },
+                { lat: 14.5421, lng: 121.02 },
+                { lat: 14.5492, lng: 121.028 },
+                { lat: 14.5541, lng: 121.034 },
+                { lat: 14.55991, lng: 121.04093 },
+                { lat: 14.56282, lng: 121.04402 },
+                { lat: 14.56448, lng: 121.04487 },
+                { lat: 14.5666, lng: 121.04543 },
+                { lat: 14.56817, lng: 121.04595 },
+                { lat: 14.56988, lng: 121.04646 },
+                { lat: 14.57121, lng: 121.04702 },
+                { lat: 14.5729, lng: 121.048 },
+                { lat: 14.581, lng: 121.054 },
+                { lat: 14.58794, lng: 121.05693 },
+                { lat: 14.59301, lng: 121.05831 },
+                { lat: 14.59758, lng: 121.05981 },
+                { lat: 14.59887, lng: 121.05989 },
+                { lat: 14.60123, lng: 121.05934 },
+                { lat: 14.60721, lng: 121.05685 },
+                { lat: 14.6194, lng: 121.051 },
+                { lat: 14.63159, lng: 121.04556 },
+                { lat: 14.63529, lng: 121.04333 },
+                { lat: 14.64247, lng: 121.03878 },
+                { lat: 14.65177, lng: 121.03234 },
+                { lat: 14.65173, lng: 121.0323 },
+                { lat: 14.65177, lng: 121.03234 },
+                { lat: 14.65177, lng: 121.03234 }
+            ];
+            var flightPath = new google.maps.Polyline({
+                path: flightPlanCoordinates,
+                geodesic: true,
+                strokeColor: '#1C60FF',
+                strokeOpacity: 1.0,
+                strokeWeight: 8
+            });
+
+            flightPath.setMap(map);
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW4WePFFPRe7APGCK9N2BCqWdS-DtXbhs&callback=initMap"></script>
+
+    <div class="splash active">
+        <div class="splash-icon"></div>
+    </div>
+
+    <main class="main h-100 w-100">
+        <div class="container h-100" id="over_map" style="padding: 0px; width: 430px;">
+            <div class="d-table-cell align-top" style="padding: 0px;">
+
+                <div class="card" style="padding: 7px; margin: 7px; width: 400px;">
+                    <div class="card-body" style="padding: 0px; margin: 0px;">
+
+                        <table border="0" width="100%">
+                            <tr>
+                                <td>
+                                    <button id="btnLrt1" class="btn btn-primary btn-sm" value="ROULRT1">LRT1</button>
+                                    <button id="btnLrt2" class="btn btn-primary btn-sm" value="ROULRT2">LRT2</button>
+                                    <button id="btnMrt3" class="btn btn-primary btn-sm" value="ROUMRT3">MRT3</button>
+                                    <button id="btnPnr" class="btn btn-primary btn-sm" value="ROUPNR">PNR</button>
+                                </td>
+                                <td align="right">
+                                    <img src="img/big_bold.png" width="110" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="padding: 7px;"></div>
+
+                        <h1 class="title">
+                            &nbsp;<i class="align-middle mr-2 fas fa-lg fa-train"></i>Cubao Station
+                        </h1>
+
+                        <form id="validation-form">
+
+                            <div style="padding: 5px;"></div>
+                            <button class="btn btn-success btn-sm" disabled>North Ave - Taft</button>
+                            <button class="btn btn-success btn-sm">Taft - North Ave</button>
+                            <div style="padding: 3px;"></div>
+
+                            <table border="0" class="table table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                            <img src="img/stop_on_end_top.png" />
+                                        </td>
+                                        <td>
+                                            <b><a href="#">Cubao</a></b>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            6:30pm <span>| <span style="font-weight: bold;">3</span> <span style="font-weight: bold;">mins</span> <img class='imgwifi' src='img/wifi.gif' /></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                            <img src="img/stop_off_mid.png" />
+                                        </td>
+                                        <td>
+                                            <b><a href="#">Santolan</a></b>
+                                        </td>
+                                        <td>
+                                            6:45pm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                            <img src="img/stop_off_end_bottom.png" />
+                                        </td>
+                                        <td>
+                                            <b><a href="#">Ortigas</a></b>
+                                        </td>
+                                        <td>
+                                            6:25pm | 10 mins
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>y</td>
+                                        <td>
+                                            <b><a href="#">Shaw Blvd.</a></b>
+                                        </td>
+                                        <td>
+                                            6:55pm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                            <img src="img/stop_off_end_top.png" />
+                                        </td>
+                                        <td>
+                                            <b><a href="#">Cubao</a></b>
+                                        </td>
+                                        <td style="width:40%;">
+                                            6:30pm | <b>3 mins</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                            <img src="img/stop_on_mid.png" />
+                                        </td>
+                                        <td>
+                                            <b><a href="#">Santolan</a></b>
+                                        </td>
+                                        <td>
+                                            6:45pm
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                            <img src="img/stop_on_end_bottom.png" />
+                                        </td>
+                                        <td>
+                                            <b><a href="#">Ortigas</a></b>
+                                        </td>
+                                        <td>
+                                            6:25pm | 10 mins
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <symbol viewBox="0 0 512 512" id="ion-ios-pulse-strong">
+          <path
+            d="M448 273.001c-21.27 0-39.296 13.999-45.596 32.999h-38.857l-28.361-85.417a15.999 15.999 0 0 0-15.183-10.956c-.112 0-.224 0-.335.004a15.997 15.997 0 0 0-15.049 11.588l-44.484 155.262-52.353-314.108C206.535 54.893 200.333 48 192 48s-13.693 5.776-15.525 13.135L115.496 306H16v31.999h112c7.348 0 13.75-5.003 15.525-12.134l45.368-182.177 51.324 307.94c1.229 7.377 7.397 11.92 14.864 12.344.308.018.614.028.919.028 7.097 0 13.406-3.701 15.381-10.594l49.744-173.617 15.689 47.252A16.001 16.001 0 0 0 352 337.999h51.108C409.973 355.999 427.477 369 448 369c26.511 0 48-22.492 48-49 0-26.509-21.489-46.999-48-46.999z">
+          </path>
+        </symbol>
+      </defs>
+    </svg> -->
+    <script src="js/app.js"></script>
+
+
+
+    <script>
+        $(function () {
+            // Initialize Select2 select box
+            $("select[name=\"validation-select2\"]").select2({
+                allowClear: true,
+                placeholder: "Station...",
+            }).change(function () {
+                $(this).valid();
+            });
+
+            // Trigger validation on tagsinput change
+            $("input[name=\"validation-bs-tagsinput\"]").on("itemAdded itemRemoved", function () {
+                $(this).valid();
+            });
+            // Initialize validation
+            $("#validation-form").validate({
+                ignore: ".ignore, .select2-input",
+                focusInvalid: false,
+                rules: {
+                    "validation-select2": {
+                        required: false
+                    }
+                },
+                // Errors
+                errorPlacement: function errorPlacement(error, element) {
+                    var $parent = $(element).parents(".form-group");
+                    // Do not duplicate errors
+                    if ($parent.find(".jquery-validation-error").length) {
+                        return;
+                    }
+                    $parent.append(
+                        error.addClass("jquery-validation-error small form-text invalid-feedback")
+                    );
+                },
+                highlight: function (element) {
+                    var $el = $(element);
+                    var $parent = $el.parents(".form-group");
+                    $el.addClass("is-invalid");
+                    // Select2 and Tagsinput
+                    if ($el.hasClass("select2-hidden-accessible") || $el.attr("data-role") === "tagsinput") {
+                        $el.parent().addClass("is-invalid");
+                    }
+                },
+                unhighlight: function (element) {
+                    $(element).parents(".form-group").find(".is-invalid").removeClass("is-invalid");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

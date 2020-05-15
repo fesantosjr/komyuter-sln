@@ -1,0 +1,133 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.Calendar>
+
+@{
+    ViewBag.Title = "Calendar List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Calendar
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="Calendar/Create">Create New Calendar</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.service_id)</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.monday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.tuesday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.wednesday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.thursday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.friday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.saturday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.sunday)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.start_date)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.end_date)
+                                            </th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.service_id })" title="Details">@Html.Raw(item.service_id)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.monday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tuesday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.wednesday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.thursday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.friday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.saturday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.sunday)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.start_date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.end_date)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Delete", new { id = item.service_id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                    @*<tfoot>
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.agency_name)</th>
+                                            <th>@Html.DisplayNameFor(model => model.agency_url)</th>
+                                            <th>@Html.DisplayNameFor(model => model.agency_timezone)</th>
+                                            <th>@Html.DisplayNameFor(model => model.agency_lang)</th>
+                                        </tr>
+                                    </tfoot>*@
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

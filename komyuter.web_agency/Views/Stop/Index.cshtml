@@ -1,0 +1,90 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.Stops>
+
+@{
+    ViewBag.Title = "Stop List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Stop
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="Stop/Create">Create New Stop</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.stop_id)</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.stop_name)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.stop_lat)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.stop_lon)
+                                            </th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.stop_id })" title="Details">@Html.Raw(item.stop_id)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.stop_name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.stop_lat)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.stop_lon)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Delete", new { id = item.stop_id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

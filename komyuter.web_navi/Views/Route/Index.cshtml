@@ -1,0 +1,311 @@
+﻿@model komyuter.web_navi.Models.NaviRoute
+
+@{
+    ViewBag.Title = "Route";
+    Layout = "~/Views/Shared/_LayoutKomyuter.cshtml";
+}
+
+@*<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAW4WePFFPRe7APGCK9N2BCqWdS-DtXbhs"></script>*@
+
+<div class="splash active">
+    <div class="splash-icon"></div>
+</div>
+
+<main class="main h-100 w-100">
+    <div class="container" id="over_map" style="padding: 0px; width: 430px;">
+        <div class="d-table-cell align-top" style="padding: 0px;">
+
+            <div class="card" style="padding: 7px; margin: 7px; width: 400px;">
+                <div class="card-body" style="padding: 0px; margin: 0px;">
+
+                    <table border="0" width="100%">
+                        <tr>
+                            <td>
+                                @{
+                                    string lrt1Selected = "";
+                                    string lrt2Selected = "";
+                                    string mrt3Selected = "";
+                                    string pnrSelected = "";
+
+                                    switch (Model.SelectedRouteId)
+                                    {
+                                        case "ROULRT1":
+                                            lrt1Selected = " disabled";
+                                            break;
+                                        case "ROULRT2":
+                                            lrt2Selected = " disabled";
+                                            break;
+                                        case "ROUMRT3":
+                                            mrt3Selected = " disabled";
+                                            break;
+                                        case "ROUPNR":
+                                            pnrSelected = " disabled";
+                                            break;
+                                    }
+                                }
+                                <button name="routebtn" class="btn btn-primary btn-sm" value="ROULRT1"@Html.Raw(lrt1Selected)>LRT1</button>
+                                <button name="routebtn" class="btn btn-primary btn-sm" value="ROULRT2"@Html.Raw(lrt2Selected)>LRT2</button>
+                                <button name="routebtn" class="btn btn-primary btn-sm" value="ROUMRT3"@Html.Raw(mrt3Selected)>MRT3</button>
+                                <button name="routebtn" class="btn btn-primary btn-sm" value="ROUPNR"@Html.Raw(pnrSelected)>PNR</button>
+                            </td>
+                            <td align="right">
+                                <img src="img/big_bold.png" width="110" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="padding: 7px;"></div>
+
+                    <h1 class="title">
+                        &nbsp;<i class="align-middle mr-2 fas fa-lg fa-train"></i><span id="spnStationName"></span>
+                    </h1>
+
+                    <form id="validation-form">
+
+                        <div style="padding: 5px;"></div>
+
+                        @if (Model.ReverseTrip.Count > 0)
+                        {
+                            string disable0 = " disabled";
+                                            string disable1 = "";
+
+                                            string headsignLeft = Model.ReverseTrip[0].orig_trip_headsign;
+                                            string headsignRight = Model.ReverseTrip[0].trip_headsign;
+
+                            if (Model.ReverseTrip[0].direction_id == 0)
+                            {
+                                disable0 = "";
+                                disable1 = " disabled";
+
+                                headsignLeft = Model.ReverseTrip[0].trip_headsign;
+                                headsignRight = Model.ReverseTrip[0].orig_trip_headsign;
+                            }
+
+                                        string reverseTripValue = Model.ReverseTrip[0].trip_id + "_"
+                                                    + Model.ReverseTrip[0].start_time;
+
+                            <button name="reversetripbutton" type="button" class="btn btn-success btn-sm" value="@Html.Raw(reverseTripValue)_0" @Html.Raw(disable0)>To @Html.Raw(headsignLeft)</button>
+                            <button name="reversetripbutton" type="button" class="btn btn-success btn-sm" value="@Html.Raw(reverseTripValue)_1" @Html.Raw(disable1)>To @Html.Raw(headsignRight)</button>
+                        }
+
+
+                        <div style="padding: 3px;"></div>
+
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Small button group" style="margin-bottom: 7px;">
+
+                            @{
+                                string prevDisabled = " disabled";
+                                    string prevValue = "";
+                                    string prevTime = "";
+
+                                if (Model.TripPrevious.Count > 0)
+                                {
+                                    prevDisabled = "";
+                                    prevValue = Model.TripPrevious[0].start_time.ToString();
+
+                                    prevTime = " | " + DateTime.Today.Add(Model.TripPrevious[0].actual_start_time).ToString("h:mmtt").ToLower();
+                                }
+                            }
+                            <button name="prevnextbutton" type="button" class="btn btn-warning" value="@Html.Raw(prevValue)" @Html.Raw(prevDisabled)>
+                                &lt; Previous Trip
+                                @Html.Raw(prevTime)
+                            </button>
+                            &nbsp;&nbsp;
+
+                            @{
+                                string nextDisabled = " disabled";
+                                    string nextValue = "";
+                                    string nextTime = "";
+
+                                if (Model.TripNext.Count > 0)
+                                {
+                                    nextDisabled = "";
+                                    nextValue = Model.TripNext[0].start_time.ToString();
+
+                                    nextTime = DateTime.Today.Add(Model.TripNext[0].actual_start_time).ToString("h:mmtt").ToLower() + " | ";
+                                }
+                            }
+                            <button name="prevnextbutton" type="button" class="btn btn-warning" value="@Html.Raw(nextValue)" @Html.Raw(nextDisabled)>
+                                @Html.Raw(nextTime)Next Trip >
+                            </button>
+                        </div>
+
+
+                        <div id="divtable">
+                            <table id="tblStops" border="0" class="table table-striped table-hover" style="margin-bottom: 0px;">
+                                <tbody>
+
+                                    @{
+                                        // csharp code block
+                                        // everything in here is code, don't have to use @
+                                        int counter = 1;
+                                    int counter_stop_selected_row = 0;
+                                    int counter_stop_length = Model.navi_stops.Count;
+                                    string imgPath = "";
+
+                                    string selectedStopName = "";
+                                    string selectedStopLat = "";
+                                    string selectedStopLon = "";
+
+                                    int stopDataCounter = 0;
+                                    string stopDataSeparator = ",";
+                                    string stopData = "";
+
+                                    DateTime phNow = DateTime.UtcNow.AddHours(8);
+                                    }
+
+                                    @foreach (var item in Model.navi_stops)
+                                    {
+
+
+                                        stopDataCounter++;
+
+                                        if (stopDataCounter == Model.navi_stops.Count)
+                                        {
+                                            stopDataSeparator = "";
+                                        }
+
+                                        stopData += " { \"lat\" : " + item.stop_lat.ToString() + ", \"lng\" : " + item.stop_lon.ToString() + ", \"stop_name\" : \"" + item.stop_name + "\" } " + stopDataSeparator;
+
+
+                                        if (item.stop_id == Model.SelectedStopId)
+                                        {
+                                            counter_stop_selected_row = counter;
+                                            selectedStopName = item.stop_name;
+                                            selectedStopLat = item.stop_lat.ToString();
+                                            selectedStopLon = item.stop_lon.ToString();
+                                        }
+
+                                        if (counter == 1)
+                                        {
+                                            if (item.stop_id == Model.SelectedStopId)
+                                            {
+                                                imgPath = "img/stop_on_end_top.png";
+                                            }
+                                            else
+                                            {
+                                                imgPath = "img/stop_off_end_top.png";
+                                            }
+                                        }
+                                        else if (counter == Model.navi_stops.Count)
+                                        {
+                                            if (item.stop_id == Model.SelectedStopId)
+                                            {
+                                                imgPath = "img/stop_on_end_bottom.png";
+                                            }
+                                            else
+                                            {
+                                                imgPath = "img/stop_off_end_bottom.png";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (item.stop_id == Model.SelectedStopId)
+                                            {
+                                                imgPath = "img/stop_on_mid.png";
+                                            }
+                                            else
+                                            {
+                                                imgPath = "img/stop_off_mid.png";
+                                            }
+                                        }
+
+
+                                        DateTime time = DateTime.Today.Add(TimeSpan.Parse(Model.SelectedTripTime) + item.arrival_time + TimeSpan.FromSeconds(item.delay));
+
+                                        TimeSpan tsRound = TimeSpan.FromMinutes(1);
+                                        DateTime timeRounded = new DateTime((time.Ticks + tsRound.Ticks - 1) / tsRound.Ticks * tsRound.Ticks, time.Kind);
+
+                                        string arrival_formatted = "<span class='routeTimePast'>" + timeRounded.ToString("h:mmtt").ToLower() + "</span>";
+
+                                        if (time.TimeOfDay >= phNow.TimeOfDay)
+                                        {
+                                            arrival_formatted = "<span class='routeTimeFuture'>" + timeRounded.ToString("h:mmtt").ToLower() + "</span>";
+                                        }
+
+                                        string rowValue = item.stop_name + "_" + item.stop_lat + "_" + item.stop_lon + "_" + item.stop_id + "_" + counter + "_" + counter_stop_length;
+
+                                        string htmlDelay = "";
+
+                                        if (item.delay > 0)
+                                        {
+                                            if (phNow < time)
+                                            {
+                                                Double ts = Math.Floor((time - phNow).TotalMinutes);
+                                                string min = (ts == 1) ? "min" : "mins";
+
+                                                if (ts > 0)
+                                                {
+                                                    htmlDelay = "<span class=\"sRouteDelay\">| <span class=\"font-weight-bolder\">" + ts.ToString() + "</span><span class=\"font-weight-bolder\"> " + min + "</span> <img class=\"imgwifi\" src=\"img/wifi.gif\" /></span>";
+                                                }
+                                            }
+                                        }
+
+                                        <tr>
+                                            <td style="width: 15px; text-align: center;padding: 0px; margin: 0px; padding-left: 10px;">
+                                                <img class="stopmarker" src="@Html.Raw(imgPath)" />
+                                            </td>
+                                            <td>
+                                                <span class="routestop" value="@Html.Raw(rowValue)">@Html.Raw(item.stop_name)</span>
+                                            </td>
+                                            <td style="text-align: left;" class="text-sm">
+                                                @Html.Raw(arrival_formatted) @Html.Raw(htmlDelay)
+                                            </td>
+                                        </tr>
+
+                                        counter++;
+                                    }
+
+                                </tbody>
+                            </table>
+
+                            @{
+                                string shape_coordinates = "";
+                                string shapeSeparator = ",";
+                                int shapeCounter = 0;
+
+                                foreach (var shape in Model.navi_shapes)
+                                {
+                                    shapeCounter++;
+
+                                    if (shapeCounter == Model.navi_shapes.Count)
+                                    {
+                                        shapeSeparator = "";
+                                    }
+
+                                    shape_coordinates += " { \"lat\" : " + shape.shape_pt_lat + ", \"lng\" : " + shape.shape_pt_lon + " } " + shapeSeparator;
+                                }
+
+
+                                DateTime phDateTime = DateTime.UtcNow.AddHours(8);
+                            }
+
+                        </div>
+
+                        <div class="tablefolder" align="center"><img class="folderimg" src="~/img/tbl_collapse.png" /></div>
+
+                        <div id="pageClock" class="datacontainer">@Html.Raw(phDateTime.ToString("yyyy-MM-ddTHH:mm:ss+08:00"))</div>
+                        <div id="pageData" class="datacontainer">
+                            {
+                            "SelectedRouteId" : "@Html.Raw(Model.SelectedRouteId)",
+                            "SelectedTripId" : "@Html.Raw(Model.SelectedTripId)",
+                            "SelectedDirectionId" : "@Html.Raw(Model.SelectedDirectionId)",
+                            "SelectedTripDate" : "@Html.Raw(Model.SelectedTripDate)",
+                            "SelectedTripTime" : "@Html.Raw(Model.SelectedTripTime)",
+                            "SelectedStopName" : "@Html.Raw(selectedStopName)",
+                            "SelectedStopLat" : "@Html.Raw(selectedStopLat)",
+                            "SelectedStopLon" : "@Html.Raw(selectedStopLon)",
+                            "ShapeCoordinates" : [ @Html.Raw(shape_coordinates) ],
+                            "StopData" : [ @Html.Raw(stopData) ]
+                            }
+                        </div>
+                        <div id="pageDataSelectedStopId" class="datacontainer">@Html.Raw(Model.SelectedStopId)</div>
+                        <div id="pageDataSelectedStopRow" class="datacontainer">@Html.Raw(counter_stop_selected_row)</div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

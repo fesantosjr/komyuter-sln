@@ -1,0 +1,147 @@
+﻿@model komyuter.core.DomainClasses.Calendar
+
+@{
+    ViewBag.Title = "Delete Calendar";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Calendar
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Delete Record</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-secondary" value="Calendar">Back to Calendar List</button>
+                            </div>
+
+                            <div class="card-body">
+
+                                @using (Html.BeginForm("Delete", "Calendar", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="row">
+
+                                        <div class="col-12 col-lg-8">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Service ID</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left text-primary font-weight-bold">
+                                                        @Html.DisplayFor(model => model.service_id)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Monday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.monday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Tuesday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.tuesday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Wednesday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.wednesday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Thursday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.thursday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Friday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.friday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Saturday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.saturday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Sunday</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.sunday)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Start Date</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.start_date)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">End Date</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.end_date)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="alert alert-danger alert-outline-coloured alert-dismissible" role="alert">
+                                                            <div class="alert-icon">
+                                                                <i class="far fa-fw fa-bell"></i>
+                                                            </div>
+                                                            <div class="alert-message">
+                                                                Are you sure you want to delete this?
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10 ml-sm-auto">
+                                                        <button type="submit" value="Delete" class="btn btn-primary">Yes, delete this record.</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

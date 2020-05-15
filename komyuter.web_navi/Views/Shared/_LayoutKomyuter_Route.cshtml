@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Bootstrap 4 Admin &amp; Dashboard Template">
+    <meta name="author" content="Bootlab">
+    <title>@ViewBag.Title - Komyuter</title>
+    <link rel="shortcut icon" href="/img/favicon-16x16.png" />
+    <link rel="icon" href="/img/favicon-16x16.png" />
+    @Styles.Render("~/css/komyuter")
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #mapid {
+            height: 100%;
+            z-index: 1;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            opacity: 0;
+            position: fixed;
+            overflow-y: scroll;
+            width: 100%;
+        }
+
+        #over_map {
+            position: absolute;
+            top: 0px;
+            left: -2px;
+            z-index: 99;
+        }
+
+        img.imgwifi {
+            height: 10px;
+        }
+
+        #divtable {
+            overflow: auto;
+            /*height: calc(100vh - 90px);*/
+            *display: none;
+        }
+
+        span.sHolder {
+            font-weight: bold;
+        }
+
+        span.routestop {
+            font-weight: bold;
+            color: #3b7ddd;
+        }
+
+            span.routestop:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+        div.datacontainer {
+            border: 1px solid #f00;
+            display: none;
+        }
+
+        div.leaflet-vehicle-pane {
+            z-index: 650;
+        }
+    </style>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/js/komyuter")
+</head>
+
+<body class="theme-blue">
+    <div id="mapid"></div>
+    @*<div id="komyutermap"><div id="mapid"></div></div>*@
+    @**@
+
+    <div class="splash active">
+        <div class="splash-icon"></div>
+    </div>
+
+    @RenderBody()
+
+    @Scripts.Render("~/js/app")
+</body>
+</html>

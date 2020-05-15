@@ -1,0 +1,96 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.MobileDevice>
+
+@{
+    ViewBag.Title = "Mobile Device List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Mobile Device
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="MobileDevice/Create">Create New Mobile Device</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.mobile_device_id)</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.mobile_number)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.access_token)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.optin_date)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.optout_date)
+                                            </th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.mobile_device_id })" title="Details">@Html.Raw(item.mobile_device_id)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.mobile_number)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.access_token)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.optin_date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.optout_date)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Delete", new { id = item.mobile_device_id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

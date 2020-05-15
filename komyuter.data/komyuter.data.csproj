@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{612C9B0D-BADD-40BC-BA5D-0BA874172D63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>komyuter.data</RootNamespace>
+    <AssemblyName>komyuter.data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IModelConfiguration.cs" />
+    <Compile Include="KomyuterContext.cs" />
+    <Compile Include="Migrations\202003301213302_rt-service-alert-end-date-update.cs" />
+    <Compile Include="Migrations\202003301213302_rt-service-alert-end-date-update.designer.cs">
+      <DependentUpon>202003301213302_rt-service-alert-end-date-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003310905131_navi-rt-service-alerts.cs" />
+    <Compile Include="Migrations\202003310905131_navi-rt-service-alerts.designer.cs">
+      <DependentUpon>202003310905131_navi-rt-service-alerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003310924466_navi-rt-service-alerts-rt-id.cs" />
+    <Compile Include="Migrations\202003310924466_navi-rt-service-alerts-rt-id.designer.cs">
+      <DependentUpon>202003310924466_navi-rt-service-alerts-rt-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004011108252_edit-rt-trip-updates.cs" />
+    <Compile Include="Migrations\202004011108252_edit-rt-trip-updates.designer.cs">
+      <DependentUpon>202004011108252_edit-rt-trip-updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004020921093_rt-trip-update-delay-double.cs" />
+    <Compile Include="Migrations\202004020921093_rt-trip-update-delay-double.designer.cs">
+      <DependentUpon>202004020921093_rt-trip-update-delay-double.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004020939595_navi-rt-trip-updates.cs" />
+    <Compile Include="Migrations\202004020939595_navi-rt-trip-updates.designer.cs">
+      <DependentUpon>202004020939595_navi-rt-trip-updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004021059199_rt-trip-update-update-delay-datatype.cs" />
+    <Compile Include="Migrations\202004021059199_rt-trip-update-update-delay-datatype.designer.cs">
+      <DependentUpon>202004021059199_rt-trip-update-update-delay-datatype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004050518267_update-0405.cs" />
+    <Compile Include="Migrations\202004050518267_update-0405.designer.cs">
+      <DependentUpon>202004050518267_update-0405.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004051041450_rt-vehicle-positions.cs" />
+    <Compile Include="Migrations\202004051041450_rt-vehicle-positions.designer.cs">
+      <DependentUpon>202004051041450_rt-vehicle-positions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004051044427_rt-vehicle-positions-update-start-date-time.cs" />
+    <Compile Include="Migrations\202004051044427_rt-vehicle-positions-update-start-date-time.designer.cs">
+      <DependentUpon>202004051044427_rt-vehicle-positions-update-start-date-time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004051051303_rt-remove-tables.cs" />
+    <Compile Include="Migrations\202004051051303_rt-remove-tables.designer.cs">
+      <DependentUpon>202004051051303_rt-remove-tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004051103460_navi-rt-vehicle-positions.cs" />
+    <Compile Include="Migrations\202004051103460_navi-rt-vehicle-positions.designer.cs">
+      <DependentUpon>202004051103460_navi-rt-vehicle-positions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004061157032_longitude-update.cs" />
+    <Compile Include="Migrations\202004061157032_longitude-update.designer.cs">
+      <DependentUpon>202004061157032_longitude-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004151240040_apr-15.cs" />
+    <Compile Include="Migrations\202004151240040_apr-15.designer.cs">
+      <DependentUpon>202004151240040_apr-15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004190809389_simul-vehicle-positions.cs" />
+    <Compile Include="Migrations\202004190809389_simul-vehicle-positions.designer.cs">
+      <DependentUpon>202004190809389_simul-vehicle-positions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\KomyuterContextInitializer.cs" />
+    <Compile Include="ModelConfigurations\AgencyConfiguration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelConfigurations\CalendarConfiguration.cs" />
+    <Compile Include="ModelConfigurations\FrequenciesConfiguration.cs" />
+    <Compile Include="ModelConfigurations\LBSLogConfiguration.cs" />
+    <Compile Include="ModelConfigurations\MobileDeviceConfiguration.cs" />
+    <Compile Include="ModelConfigurations\NaviRTServiceAlertsConfiguration.cs" />
+    <Compile Include="ModelConfigurations\NaviRTTripUpdatesConfiguration.cs" />
+    <Compile Include="ModelConfigurations\NaviRTVehiclePositionsConfiguration.cs" />
+    <Compile Include="ModelConfigurations\RoutesConfiguration.cs" />
+    <Compile Include="ModelConfigurations\RTServiceAlertsConfiguration.cs" />
+    <Compile Include="ModelConfigurations\RTTripUpdatesConfiguration.cs" />
+    <Compile Include="ModelConfigurations\RTVehiclePositionsConfiguration.cs" />
+    <Compile Include="ModelConfigurations\ShapesConfiguration.cs" />
+    <Compile Include="ModelConfigurations\SimulVehiclePositionsConfiguration.cs" />
+    <Compile Include="ModelConfigurations\SMSIncomingConfiguration.cs" />
+    <Compile Include="ModelConfigurations\StopsConfiguration.cs" />
+    <Compile Include="ModelConfigurations\StopTimesConfiguration.cs" />
+    <Compile Include="ModelConfigurations\TripsConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\komyuter.core\komyuter.core.csproj">
+      <Project>{b57de992-cbbc-4931-b550-e549b1a9c36a}</Project>
+      <Name>komyuter.core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003301213302_rt-service-alert-end-date-update.resx">
+      <DependentUpon>202003301213302_rt-service-alert-end-date-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003310905131_navi-rt-service-alerts.resx">
+      <DependentUpon>202003310905131_navi-rt-service-alerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003310924466_navi-rt-service-alerts-rt-id.resx">
+      <DependentUpon>202003310924466_navi-rt-service-alerts-rt-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004011108252_edit-rt-trip-updates.resx">
+      <DependentUpon>202004011108252_edit-rt-trip-updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020921093_rt-trip-update-delay-double.resx">
+      <DependentUpon>202004020921093_rt-trip-update-delay-double.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004020939595_navi-rt-trip-updates.resx">
+      <DependentUpon>202004020939595_navi-rt-trip-updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004021059199_rt-trip-update-update-delay-datatype.resx">
+      <DependentUpon>202004021059199_rt-trip-update-update-delay-datatype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004050518267_update-0405.resx">
+      <DependentUpon>202004050518267_update-0405.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004051041450_rt-vehicle-positions.resx">
+      <DependentUpon>202004051041450_rt-vehicle-positions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004051044427_rt-vehicle-positions-update-start-date-time.resx">
+      <DependentUpon>202004051044427_rt-vehicle-positions-update-start-date-time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004051051303_rt-remove-tables.resx">
+      <DependentUpon>202004051051303_rt-remove-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004051103460_navi-rt-vehicle-positions.resx">
+      <DependentUpon>202004051103460_navi-rt-vehicle-positions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004061157032_longitude-update.resx">
+      <DependentUpon>202004061157032_longitude-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004151240040_apr-15.resx">
+      <DependentUpon>202004151240040_apr-15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004190809389_simul-vehicle-positions.resx">
+      <DependentUpon>202004190809389_simul-vehicle-positions.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+</Project>

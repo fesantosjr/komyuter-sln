@@ -1,0 +1,128 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.Trips>
+
+@{
+    ViewBag.Title = "Trip List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Trip
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="Trip/Create">Create New Trip</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.trip_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.route_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.service_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.trip_headsign)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.trip_short_name)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.direction_id)
+                                            </th>
+                                            @*<th>
+                                                @Html.DisplayNameFor(model => model.block_id)
+                                            </th>*@
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.shape_id)
+                                            </th>
+                                            @*<th>
+                                                @Html.DisplayNameFor(model => model.wheelchair_accessible)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.bikes_allowed)
+                                            </th>*@
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="@Url.Action("Edit", new { id = item.trip_id })" title="Details">@Html.Raw(item.trip_id)</a>
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.route_id)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.service_id)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.trip_headsign)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.trip_short_name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.direction_id)
+                                                </td>
+                                                @*<td>
+                                                    @Html.DisplayFor(modelItem => item.block_id)
+                                                </td>*@
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.shape_id)
+                                                </td>
+                                                @*<td>
+                                                    @Html.DisplayFor(modelItem => item.wheelchair_accessible)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.bikes_allowed)
+                                                </td>*@
+                                                <td>
+                                                    <a href="@Url.Action("Delete", new { id = item.trip_id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

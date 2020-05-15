@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Bootstrap 4 Admin &amp; Dashboard Template">
+    <meta name="author" content="Bootlab">
+
+    <title>@ViewBag.Title - Komyuter Agency Site</title>
+    <link rel="shortcut icon" href="/img/favicon-16x16.png" />
+    <link rel="icon" href="/img/favicon-16x16.png" />
+
+    @Styles.Render("~/css/naviagency")
+    <link href="css/modern.css" rel="stylesheet">
+    <style>
+        body {
+            opacity: 0;
+        }
+    </style>
+    @Scripts.Render("~/js/naviagency")
+    <!-- END SETTINGS -->
+</head>
+
+<body class="theme-blue">
+    <div class="splash active">
+        <div class="splash-icon"></div>
+    </div>
+
+    @RenderBody()
+
+    @Scripts.Render("~/js/app")
+</body>
+
+</html>

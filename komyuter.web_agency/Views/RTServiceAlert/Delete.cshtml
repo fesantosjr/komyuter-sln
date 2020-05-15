@@ -1,0 +1,124 @@
+﻿@model komyuter.core.DomainClasses.RTServiceAlerts
+
+@{
+    ViewBag.Title = "Delete Service Alert";
+    Layout = "~/Views/Shared/_LayoutSpark_RT.cshtml";
+}
+
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Service Alert
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Delete Record</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-secondary" value="RTServiceAlert">Back to Service Alert List</button>
+                            </div>
+
+                            <div class="card-body">
+
+                                @using (Html.BeginForm("Delete", "RTServiceAlert", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="row">
+
+                                        <div class="col-12 col-lg-8">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Route ID</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left text-primary font-weight-bold">
+                                                        @Html.DisplayFor(model => model.route_id)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Stop ID</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left text-primary font-weight-bold">
+                                                        @Html.DisplayFor(model => model.stop_id)
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Header</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.header)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Description</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.description)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Start Date/Time</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.start_date)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">End Date/Time</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left">
+                                                        @Html.DisplayFor(model => model.end_date)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right"></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="alert alert-danger alert-outline-coloured alert-dismissible" role="alert">
+                                                            <div class="alert-icon">
+                                                                <i class="far fa-fw fa-bell"></i>
+                                                            </div>
+                                                            <div class="alert-message">
+                                                                Are you sure you want to delete this?
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10 ml-sm-auto">
+                                                        <button type="submit" value="Delete" class="btn btn-primary">Yes, delete this record.</button>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

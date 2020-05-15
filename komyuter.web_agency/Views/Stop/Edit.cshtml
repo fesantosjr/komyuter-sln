@@ -1,0 +1,100 @@
+﻿@model komyuter.core.DomainClasses.Stops
+
+@{
+    ViewBag.Title = "Stop Detail";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Stop
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Edit Record</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-secondary" value="Stop">Back to Stop List</button>
+                            </div>
+
+                            <div class="card-body">
+
+                                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(model => model.stop_id)
+                                    <div class="row">
+
+                                        <div class="col-12 col-lg-8">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Stop ID</label>
+                                                    <label class="col-form-label col-sm-10 text-sm-left text-primary font-weight-bold">
+                                                        @Html.DisplayFor(model => model.stop_id)
+                                                    </label>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Stop Name</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.stop_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Required", @maxlength = "255" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Stop Latitude</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.stop_lat, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.stop_lat, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Stop Longitude</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.stop_lon, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.stop_lon, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10 ml-sm-auto">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

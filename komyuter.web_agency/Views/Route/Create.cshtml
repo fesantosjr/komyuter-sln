@@ -1,0 +1,134 @@
+﻿@model komyuter.core.DomainClasses.Routes
+
+@{
+    ViewBag.Title = "Create Route";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Route
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Create New</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-secondary" value="Route">Back to Route List</button>
+                            </div>
+
+                            <div class="card-body">
+
+                                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+
+                                        <div class="col-12 col-lg-8">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Route ID</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.route_id, new { htmlAttributes = new { @class = "form-control", @placeholder = "Required", @maxlength = "15" } })
+                                                        @*<span class="font-13 text-muted">e.g "DD/MM/YYYY"</span>*@
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Agency ID</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.agency_id, new { htmlAttributes = new { @class = "form-control", @placeholder = "Required", @maxlength = "11" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Route Short Name</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.route_short_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Required", @maxlength = "50" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Route Long Name</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.route_long_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Required", @maxlength = "255" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Route Type</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.route_type, new { htmlAttributes = new { @class = "form-control", @data_mask = "00", @placeholder = "Required", @maxlength = "2" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Route Description</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.route_desc, new { htmlAttributes = new { @class = "form-control", @maxlength = "255" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Default Zoom</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.default_zoom, new { htmlAttributes = new { @class = "form-control", @data_mask = "00", @maxlength = "2" } })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Center Latitude</label>
+                                                    <div class="col-sm-10">
+                                                        @Html.EditorFor(model => model.center_lat, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.center_lat, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Center Longitude</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.center_lon, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.center_lon, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10 ml-sm-auto">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                }
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+</div>
+
+

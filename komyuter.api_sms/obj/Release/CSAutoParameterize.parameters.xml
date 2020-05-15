@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="KomyuterContext-Web.config Connection String" description="KomyuterContext Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:is295b.database.windows.net,1433;Initial Catalog=KomyuterAzure;Persist Security Info=False;User ID=komyuter_admin;Password=zCEtyDAqQrVNsEa49KQrdYLR;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\kiko\\source\\repos\\komyuter\\komyuter\.api_sms\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='KomyuterContext']/@connectionString" />
+  </parameter>
+</parameters>

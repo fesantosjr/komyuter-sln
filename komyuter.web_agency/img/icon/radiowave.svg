@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+<defs><style>
+.rss-line-1 {animation: rss-line-1 1.7s infinite;}
+@keyframes rss-line-1 {
+0%   { opacity: 0; }
+10% { opacity: 0; }
+20% { opacity: 1; }
+100% { opacity: 1; }}
+.rss-line-2 {
+animation: rss-line-2 1.7s infinite;}
+@keyframes rss-line-2 {
+0%   { opacity: 0; }
+30% { opacity: 0; }
+40% { opacity: 1; }
+100% { opacity: 1; }}
+.rss-line-3 {
+animation: rss-line-3 1.7s infinite;}
+@keyframes rss-line-3 {
+0%   { opacity: 0; }
+50% { opacity: 0; }
+60% { opacity: 1; }
+100% { opacity: 1; }}
+</style></defs>
+<g class="rss-line-1">
+<path fill="#333434" d="M4.8,13.58,4.5,16A9.23,9.23,0,0,1,8,19.5l2.42-.3A11.56,11.56,0,0,0,4.8,13.58Z"/>
+</g>
+<g class="rss-line-2">
+<path fill="#333434" d="M5.37,9l-.29,2.34a13.7,13.7,0,0,1,7.55,7.57l2.37-.3A16,16,0,0,0,5.37,9Z"/>
+</g>
+<g class="rss-line-3">
+<path fill="#333434" d="M5.94,4.5,5.65,6.83A18.16,18.16,0,0,1,17.17,18.35l2.33-.29A20.42,20.42,0,0,0,5.94,4.5Z"/>
+</g>
+</svg>

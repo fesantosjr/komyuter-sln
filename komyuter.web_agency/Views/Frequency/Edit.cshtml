@@ -1,0 +1,112 @@
+﻿@model komyuter.core.DomainClasses.Frequencies
+
+@{
+    ViewBag.Title = "Frequency Detail";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Frequency
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Edit Record</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-secondary" value="Frequency">Back to Frequency List</button>
+                            </div>
+
+                            <div class="card-body">
+
+                                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "validation-form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(model => model.id)
+                                    <div class="row">
+
+                                        <div class="col-12 col-lg-8">
+
+                                            <form>
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Trip ID</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.trip_id, new { htmlAttributes = new { @class = "form-control", @placeholder = "Required", @maxlength = "35" } })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Start Time</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.start_time, new { htmlAttributes = new { @class = "form-control", @data_mask = "00:00:00", @placeholder = "Required", @maxlength = "8" } })
+                                                        <span class="font-13 text-muted">e.g "HH:MM:SS"</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">End Time</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.end_time, new { htmlAttributes = new { @class = "form-control", @data_mask = "00:00:00", @placeholder = "Required", @maxlength = "8" } })
+                                                        <span class="font-13 text-muted">e.g "HH:MM:SS"</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Headway Seconds</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.headway_secs, new { htmlAttributes = new { @class = "form-control", @data_mask = "#", @placeholder = "Required" } })
+                                                        <span class="font-13 text-muted">in seconds</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-form-label col-sm-2 text-sm-right">Exact Times</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.exact_times, new { htmlAttributes = new { @class = "form-control", @maxlength = "8", @placeholder = "Required" } })
+                                                        <span class="font-13 text-muted">in seconds</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10 ml-sm-auto">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

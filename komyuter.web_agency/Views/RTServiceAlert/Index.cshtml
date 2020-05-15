@@ -1,0 +1,105 @@
+﻿@model IEnumerable<komyuter.core.DomainClasses.RTServiceAlerts>
+
+@{
+    ViewBag.Title = "Service Alert List";
+    Layout = "~/Views/Shared/_LayoutSpark.cshtml";
+}
+
+
+<div class="wrapper">
+
+    @Html.Partial("_SparkSideBarPartial")
+
+    <div class="main">
+
+        @Html.Partial("_SparkNavBarPartial")
+
+        <main class="content">
+            <div class="container-fluid">
+
+                <div class="header">
+                    <h1 class="header-title">
+                        Service Alert
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">Listing</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <button id="createnew" class="btn btn-pill btn-primary" value="RTServiceAlert/Create">Create New Service Alert</button>
+                            </div>
+                            <div class="card-body">
+                                <table id="datatables-basic" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.route_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.stop_id)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.header)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.start_date)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.end_date)
+                                            </th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                <a href="@Url.Action("Edit", new { id = item.id })" title="Details">@Html.Raw(item.id)</a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.route_id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.stop_id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.header)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.start_date)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.end_date)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Delete", new { id = item.id })" title="Delete"><i class="align-middle fas fa-fw fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        @Html.Partial("_SparkFooterPartial")
+
+    </div>
+
+</div>

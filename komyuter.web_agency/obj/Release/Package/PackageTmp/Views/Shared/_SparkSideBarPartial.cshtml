@@ -1,0 +1,104 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    <nav id="sidebar" class="sidebar">
+        <a class="sidebar-brand" href="/">
+           <img src="~/img/logo_with_name_inverted_small.png" />
+        </a>
+        <div class="sidebar-content">
+            <div class="sidebar-user">
+                @*<img src="img/avatars/avatar.jpg" class="img-fluid rounded-circle mb-2" alt="Linda Miller" />*@
+                <div class="font-weight-bold">Admin</div>
+                <small>Magandang araw!</small>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "NaviHome")">
+                        <i class="align-middle mr-2 fas fa-fw fa-home"></i> <span class="align-middle">Home</span>
+                    </a>
+                </li>
+                <li class="sidebar-header">
+                    GTFS
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Agency")">
+                        <i class="align-middle mr-2 fas fa-fw fa-building"></i> <span class="align-middle">Agencies</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Calendar")">
+                        <i class="align-middle mr-2 fas fa-fw fa-calendar-alt"></i> <span class="align-middle">Calendars</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Route")">
+                        <i class="align-middle mr-2 fas fa-fw fa-map-marked"></i> <span class="align-middle">Routes</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Trip")">
+                        <i class="align-middle mr-2 fas fa-fw fa-suitcase"></i> <span class="align-middle">Trips</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Frequency")">
+                        <i class="align-middle mr-2 fas fa-fw fa-clipboard-list"></i> <span class="align-middle">Frequencies</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Stop")">
+                        <i class="align-middle mr-2 fas fa-fw fa-stop-circle"></i> <span class="align-middle">Stops</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "StopTime")">
+                        <i class="align-middle mr-2 fas fa-fw fa-business-time"></i> <span class="align-middle">Stop Times</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "Shape")">
+                        <i class="align-middle mr-2 fas fa-fw fa-map-pin"></i> <span class="align-middle">Shapes</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-header">
+                    Realtime Data
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "RTServiceAlert")">
+                        <i class="align-middle mr-2 fas fa-fw fa-bell"></i> <span class="align-middle">Service Alerts</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "RTTripUpdate")">
+                        <i class="align-middle mr-2 fas fa-fw fa-broadcast-tower"></i> <span class="align-middle">Trip Updates</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "RTVehiclePosition")">
+                        <i class="align-middle mr-2 fas fa-fw fa-train"></i> <span class="align-middle">Vehicle Positions</span>
+                    </a>
+                </li>
+                <li class="sidebar-header">
+                    SMS
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "MobileDevice")">
+                        <i class="align-middle mr-2 fas fa-fw fa-mobile-alt"></i> <span class="align-middle">Mobile Devices</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="@Url.Action("Index", "SMSIncoming")">
+                        <i class="align-middle mr-2 fas fa-fw fa-comment-dots"></i> <span class="align-middle">SMS Incoming</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+}
+else
+{
+
+}
